@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestCreoView", "TestCreoView\TestCreoView.csproj", "{BB1BBAE1-CA25-4E80-82B5-001B6514B50C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB1BBAE1-CA25-4E80-82B5-001B6514B50C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1BBAE1-CA25-4E80-82B5-001B6514B50C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1BBAE1-CA25-4E80-82B5-001B6514B50C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1BBAE1-CA25-4E80-82B5-001B6514B50C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0DE15800-4D25-400C-8D46-5A1EB0806586}
+	EndGlobalSection
+EndGlobal
