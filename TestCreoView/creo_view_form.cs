@@ -14,6 +14,7 @@ namespace TestCreoView
         protected InstanceMan instMan;
         protected Bitmap bitmap;
         protected ImageList imageList = new ImageList();
+        protected PicForm picDlg = new PicForm();
         public creo_view_form()
         {
             InitializeComponent();
@@ -25,6 +26,7 @@ namespace TestCreoView
             this.mdlView.thumbnailView = "true";
             this.instMan = new InstanceMan(this.mdlView);
             this.mdlView.sourceUrl = @"..\..\pvz\test16_p_yceb.pvz";
+
         }
 
         private void BtnTestClick(object sender, EventArgs e)
@@ -43,6 +45,7 @@ namespace TestCreoView
             {
                 return;
             }
+
             instMan.AddInstance(e.id,e.name,e.parent);
         }
         protected void MyEndInstalce(object sender, EventArgs e)
@@ -90,6 +93,12 @@ namespace TestCreoView
             this.mdlView.OnBeginSelect += MyBeginSelect;
             this.mdlView.OnEndSelect += MyEndSelect;
             this.mdlView.OnSelectInstance += MySelectInstance;
+            this.mdlView.OnMouseHover += MyMouseHover;
+        }
+
+        protected void MyMouseHover(object sender, _DpviewEvents_OnMouseHoverEvent e)
+        {
+
         }
 
 
@@ -123,9 +132,8 @@ namespace TestCreoView
             {
                 TreeNode sonNode = _node.Nodes.Add(_instance.Value.GetName());
                 sonNode.Tag = _instance.Value;
-                 sonNode.ImageIndex = GetImageIndex(_instance.Value);
+                sonNode.ImageIndex = GetImageIndex(_instance.Value);
                 sonNode.SelectedImageIndex = sonNode.ImageIndex;
- //               sonNode.ImageIndex = nidx_t++;
                 if (_instance.Value.sonInstance.Count > 0)
                 {
                     UpdateTreeNode(sonNode,_instance.Value);
@@ -145,6 +153,11 @@ namespace TestCreoView
                 return 0;
             }
             return 8;
+        }
+
+        private void MenuShowPicDlg(object sender, EventArgs e)
+        {
+            picDlg.ShowDialog();
         }
     }
 }

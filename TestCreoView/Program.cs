@@ -14,7 +14,7 @@ namespace TestCreoView
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new creo_view_form());
+            Application.Run(new UserInfoForm());
         }
     }
 }
