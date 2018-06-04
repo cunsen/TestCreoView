@@ -89,7 +89,21 @@ namespace TestCreoView
             InstanceComp instanceComp = new InstanceComp(this.mdlView, instance);
             instanceArray.Add(_id, instanceComp);
         }
-        
+
+        public void HideAllInstance()
+        {
+            foreach (KeyValuePair<string, InstanceComp> instance in instanceArray)
+            {
+                mdlView.HideInstance(instance.Key);
+            }
+        }
+
+        protected void ShowInstanceZoom(string _id)
+        {
+            mdlView.ShowInstance(_id);
+            mdlView.ZoomToInstance(_id);
+        }
+
     }
 
 

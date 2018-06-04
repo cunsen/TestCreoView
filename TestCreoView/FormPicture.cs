@@ -8,22 +8,17 @@ using System.Windows.Forms;
 
 namespace TestCreoView
 {
-    public partial class UserInfoForm : Form
+    public partial class FormPicture : Form
     {
-        public UserInfoForm()
+        public FormPicture()
         {
             InitializeComponent();
-            ResetList();
+            InitializePic();
         }
 
-        public void ResetList()
+        protected void InitializePic()
         {
-            for(int i = 0;i < 10;i++)
-            {
-                this.listView1.Items.Add(i.ToString());
-
-            }
+            this.pictureBox1.Load(@"..\..\image\GB5786-A.jpg");
         }
-
     }
 }

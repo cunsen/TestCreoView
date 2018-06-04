@@ -14,7 +14,7 @@ namespace TestCreoView
         protected InstanceMan instMan;
         protected Bitmap bitmap;
         protected ImageList imageList = new ImageList();
-        protected PicForm picDlg = new PicForm();
+        protected FormPicture picDlg = new FormPicture();
         public creo_view_form()
         {
             InitializeComponent();

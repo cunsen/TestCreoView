@@ -1,6 +1,6 @@
 ﻿namespace TestCreoView
 {
-    partial class PicForm
+    partial class FormPicture
     {
         /// <summary>
         /// Required designer variable.

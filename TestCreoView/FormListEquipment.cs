@@ -8,17 +8,11 @@ using System.Windows.Forms;
 
 namespace TestCreoView
 {
-    public partial class PicForm : Form
+    public partial class FormListEquipment : Form
     {
-        public PicForm()
+        public FormListEquipment()
         {
             InitializeComponent();
-            InitializePic();
-        }
-
-        protected void InitializePic()
-        {
-            this.pictureBox1.Load(@"..\..\image\GB5786-A.jpg");
         }
     }
 }
