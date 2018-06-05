@@ -3,22 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace TestCreoView
 {
-    public partial class FormPicture : ToolWindow
+    public partial class FormMdlTree : DockContent
     {
-        public FormPicture()
+        public FormMdlTree()
         {
             InitializeComponent();
-            InitializePic();
-        }
-
-        protected void InitializePic()
-        {
-            this.pictureBox1.Load(@"..\..\image\GB5786-A.jpg");
         }
     }
 }

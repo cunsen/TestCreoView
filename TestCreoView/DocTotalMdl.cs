@@ -1,21 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
-using AxpviewLib;
+﻿using AxpviewLib;
+using System;
+using WeifenLuo.WinFormsUI.Docking;
 
 
 namespace TestCreoView
 {
-    public partial class FormMdlView : ToolWindow
+    public partial class DocTotalMdl : DockContent
     {
         protected InstanceMan instMan;
 
-
-        public FormMdlView()
+        public DocTotalMdl()
         {
             InitializeComponent();
 
@@ -25,7 +19,6 @@ namespace TestCreoView
 
             this.mdlView.sourceUrl = @"..\..\pvz\test16_p_yceb.pvz";
         }
-
         protected void MyBeginInstance(object sender, EventArgs e)
         {
             instMan.Clear();
@@ -91,9 +84,5 @@ namespace TestCreoView
         {
 
         }
-
-
-
-
     }
 }

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace TestCreoView
 {
-    public partial class FormUserInfo : Form
+    public partial class FormUserInfo : ToolWindow
     {
         public FormUserInfo()
         {

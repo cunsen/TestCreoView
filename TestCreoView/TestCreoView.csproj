@@ -8,9 +8,24 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>TestCreoView</RootNamespace>
     <AssemblyName>TestCreoView</AssemblyName>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -40,9 +55,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="WeifenLuo.WinFormsUI.Docking">
-      <HintPath>.\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="creo_view_form.cs">
@@ -57,11 +69,23 @@
     <Compile Include="FormListEquipment.Designer.cs">
       <DependentUpon>FormListEquipment.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormMdlTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMdlTree.Designer.cs">
+      <DependentUpon>FormMdlTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMdlView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMdlView.Designer.cs">
       <DependentUpon>FormMdlView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DocTotalMdl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DocTotalMdl.Designer.cs">
+      <DependentUpon>DocTotalMdl.cs</DependentUpon>
     </Compile>
     <Compile Include="InstanceInfo.cs" />
     <Compile Include="FormPicture.cs">
@@ -76,6 +100,12 @@
     <Compile Include="FormProcessInfo.Designer.cs">
       <DependentUpon>FormProcessInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="FormUserInfo.cs">
@@ -84,12 +114,21 @@
     <Compile Include="FormUserInfo.Designer.cs">
       <DependentUpon>FormUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="ToolWindows\ToolWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ToolWindows\ToolWindow.Designer.cs">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="creo_view_form.resx">
       <DependentUpon>creo_view_form.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FormListEquipment.resx">
       <DependentUpon>FormListEquipment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMdlTree.resx">
+      <DependentUpon>FormMdlTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMdlView.resx">
       <DependentUpon>FormMdlView.cs</DependentUpon>
@@ -99,6 +138,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormProcessInfo.resx">
       <DependentUpon>FormProcessInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DocTotalMdl.resx">
+      <DependentUpon>DocTotalMdl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -112,6 +157,9 @@
     </Compile>
     <EmbeddedResource Include="FormUserInfo.resx">
       <DependentUpon>FormUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ToolWindows\ToolWindow.resx">
+      <DependentUpon>ToolWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -145,6 +193,41 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="image\bitmap_tree.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2003.csproj">
+      <Project>{719f0f69-66da-438d-b5bb-2d883ef4ace2}</Project>
+      <Name>ThemeVS2003</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2012.csproj">
+      <Project>{4ed4fdb5-9fd0-49e6-876d-1635f727c755}</Project>
+      <Name>ThemeVS2012</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2013.csproj">
+      <Project>{245e07f6-10d5-4cfa-b003-0deb06b223da}</Project>
+      <Name>ThemeVS2013</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\ThemeVS2015.csproj">
+      <Project>{007d4ac8-948f-4816-86ad-b9d1343672c1}</Project>
+      <Name>ThemeVS2015</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WinFormsUI\WinFormsUI.csproj">
+      <Project>{c75532c4-765b-418e-b09b-46d36b2abdb1}</Project>
+      <Name>WinFormsUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="license.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
