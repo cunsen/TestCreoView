@@ -6,14 +6,23 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using AxpviewLib;
+using WeifenLuo.WinFormsUI.Docking;
 
 
 namespace TestCreoView
 {
     public partial class FormMdlView : ToolWindow
     {
+        public string toolWindowName
+        {
+            set
+            {
+                this.Text = value;
+                this.TabText = value;
+            }
+            get { return this.TabText; }
+        }
         protected InstanceMan instMan;
-
 
         public FormMdlView()
         {
@@ -22,7 +31,7 @@ namespace TestCreoView
             this.instMan = new InstanceMan(this.mdlView);
             this.mdlView.renderatstartup = "true";
             this.mdlView.thumbnailView = "true";
-
+            toolWindowName = "子模型";
             this.mdlView.sourceUrl = @"..\..\pvz\test16_p_yceb.pvz";
         }
 

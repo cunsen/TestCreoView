@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 namespace TestCreoView
 {
-    public partial class FormListEquipment : ToolWindow
+    public partial class FormListAuxiMat : ToolWindow
     {
         public string toolWindowName
         {
@@ -19,10 +19,10 @@ namespace TestCreoView
             }
             get { return this.TabText; }
         }
-        public FormListEquipment()
+        public FormListAuxiMat()
         {
             InitializeComponent();
-            toolWindowName = "工具工装清单";
+            toolWindowName = "辅助材料清单";
         }
     }
 }

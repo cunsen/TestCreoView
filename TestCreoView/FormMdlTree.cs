@@ -10,11 +10,21 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace TestCreoView
 {
-    public partial class FormMdlTree : DockContent
+    public partial class FormMdlTree : ToolWindow
     {
+        public string toolWindowName
+        {
+            set
+            {
+                this.Text = value;
+                this.TabText = value;
+            }
+            get { return this.TabText; }
+        }
         public FormMdlTree()
         {
             InitializeComponent();
+            toolWindowName = "模型树";
         }
     }
 }

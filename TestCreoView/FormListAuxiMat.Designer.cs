@@ -1,6 +1,6 @@
 ﻿namespace TestCreoView
 {
-    partial class FormListEquipment
+    partial class FormListAuxiMat
     {
         /// <summary>
         /// Required designer variable.

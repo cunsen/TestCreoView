@@ -1,4 +1,4 @@
-﻿namespace TestCreoView
+namespace TestCreoView
 {
     partial class ToolWindow
     {
@@ -28,19 +28,62 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.option1ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.option2ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.option3ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.option1ToolStripMenuItem,
+            this.option2ToolStripMenuItem,
+            this.option3ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(113, 70);
+            // 
+            // option1ToolStripMenuItem
+            // 
+            this.option1ToolStripMenuItem.Name = "option1ToolStripMenuItem";
+            this.option1ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.option1ToolStripMenuItem.Text = "Option&1";
+            // 
+            // option2ToolStripMenuItem
+            // 
+            this.option2ToolStripMenuItem.Name = "option2ToolStripMenuItem";
+            this.option2ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.option2ToolStripMenuItem.Text = "Option&2";
+            // 
+            // option3ToolStripMenuItem
+            // 
+            this.option3ToolStripMenuItem.Name = "option3ToolStripMenuItem";
+            this.option3ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.option3ToolStripMenuItem.Text = "Option&3";
             // 
             // ToolWindow
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(355, 415);
+            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.DockAreas = ((WeifenLuo.WinFormsUI.Docking.DockAreas)(((((WeifenLuo.WinFormsUI.Docking.DockAreas.Float | WeifenLuo.WinFormsUI.Docking.DockAreas.DockLeft)
+                        | WeifenLuo.WinFormsUI.Docking.DockAreas.DockRight)
+                        | WeifenLuo.WinFormsUI.Docking.DockAreas.DockTop)
+                        | WeifenLuo.WinFormsUI.Docking.DockAreas.DockBottom)));
             this.Name = "ToolWindow";
-            this.TabText = "ToolWindow";
-            this.Text = "ToolWindow";
+            this.TabPageContextMenuStrip = this.contextMenuStrip1;
+            this.TabText = "";
+            this.Text = "";
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem option1ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem option2ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem option3ToolStripMenuItem;
     }
 }

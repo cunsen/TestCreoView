@@ -57,7 +57,6 @@
             this.ClientSize = new System.Drawing.Size(533, 450);
             this.Controls.Add(this.panel1);
             this.Name = "FormMdlTree";
-            this.Text = "FormMdlTree";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

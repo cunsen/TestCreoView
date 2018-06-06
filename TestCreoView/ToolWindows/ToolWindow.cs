@@ -1,4 +1,4 @@
-﻿using System.Windows.Forms;
+using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 
 namespace TestCreoView
@@ -8,6 +8,7 @@ namespace TestCreoView
         public ToolWindow()
         {
             InitializeComponent();
+            AutoScaleMode = AutoScaleMode.Dpi;
         }
     }
 }

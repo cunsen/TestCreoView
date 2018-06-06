@@ -50,7 +50,6 @@
             this.ClientSize = new System.Drawing.Size(523, 428);
             this.Controls.Add(this.mdlView);
             this.Name = "FormMdlView";
-            this.Text = "FormMdlView";
             ((System.ComponentModel.ISupportInitialize)(this.mdlView)).EndInit();
             this.ResumeLayout(false);
 

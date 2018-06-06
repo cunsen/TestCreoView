@@ -5,15 +5,26 @@ using System.Data;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace TestCreoView
 {
     public partial class FormProcessInfo : ToolWindow
     {
+        public string toolWindowName
+        {
+            set
+            {
+                this.Text = value;
+                this.TabText = value;
+            }
+            get { return this.TabText; }
+        }
         public FormProcessInfo()
         {
             InitializeComponent();
             ResetList();
+            toolWindowName = "工序工步";
         }
 
         protected void ResetList()

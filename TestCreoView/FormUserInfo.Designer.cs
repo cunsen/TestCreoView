@@ -97,7 +97,6 @@
             this.ClientSize = new System.Drawing.Size(403, 239);
             this.Controls.Add(this.panel1);
             this.Name = "UserInfoForm";
-            this.Text = "操作信息";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI.Docking;
 using System.IO;
-
+using System;
 
 
 namespace TestCreoView
@@ -18,36 +18,52 @@ namespace TestCreoView
         private FormListEquipment m_formList;
         private FormMdlTree m_formTree;
         private FormMdlView m_formView;
-        private FormPicture m_formPic;
+        private FormAsmInfo m_formPic;
         private FormProcessInfo m_formProcess;
         private FormUserInfo m_formUserInfo;
+        private FormListAuxiMat m_formAuxiMat;
+        private FormMatInfo m_formMatInfo;
 
         public MainForm()
         {
+            InitializePropertyWnd();
             InitializeComponent();
 
             AutoScaleMode = AutoScaleMode.Dpi;
-            CreateAllWnd();
-            //showRightToLeft.Checked = (RightToLeft == RightToLeft.Yes);
-            //RightToLeftLayout = showRightToLeft.Checked;
+            dockPanel.DocumentStyle = DocumentStyle.DockingSdi;
 
             m_deserializeDockContent = new DeserializeDockContent(GetContentFromPersistString);
-            //           vsToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
-
+            vsToolStripExtender1.DefaultRenderer = _toolStripProfessionalRenderer;
             SetSchema(this.menuItemSchemaVS2013Blue, null);
+            ShowTotalMdlDoc();
         }
 
-        protected void CreateAllWnd()
+        protected void InitializePropertyWnd()
         {
             m_docTotal = new DocTotalMdl();
             m_formList = new FormListEquipment();
             m_formTree = new FormMdlTree();
             m_formView = new FormMdlView();
-            m_formPic = new FormPicture();
+            m_formPic = new FormAsmInfo();
             m_formProcess = new FormProcessInfo();
             m_formUserInfo = new FormUserInfo();
+            m_formAuxiMat = new FormListAuxiMat();
+            m_formMatInfo = new FormMatInfo();
+        }
 
-
+        protected void ShowTotalMdlDoc()
+        {
+            if (m_docTotal != null && !m_docTotal.IsDisposed)
+            {
+                return;
+            }
+            if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
+            {
+                m_docTotal.MdiParent = this;
+                m_docTotal.Show();
+            }
+            else
+                m_docTotal.Show(dockPanel);
         }
 
         private void CloseAllContents()
@@ -57,12 +73,17 @@ namespace TestCreoView
             m_formTree.DockPanel = null;
             m_formView.DockPanel = null;
             m_formPic.DockPanel = null;
+            m_formAuxiMat.DockPanel = null;
 
             m_formProcess.DockPanel = null;
             m_formUserInfo.DockPanel = null;
+            m_formMatInfo.DockPanel = null;
 
             foreach (var window in dockPanel.FloatWindows.ToList())
                 window.Dispose();
+            // m_docTotal.DockHandler.DockPanel = null;
+            //m_docTotal.DockHandler.Close();
+
 
             System.Diagnostics.Debug.Assert(dockPanel.Panes.Count == 0);
             System.Diagnostics.Debug.Assert(dockPanel.Contents.Count == 0);
@@ -95,7 +116,7 @@ namespace TestCreoView
                 return m_formTree;
             else if (persistString == typeof(FormMdlView).ToString())
                 return m_formView;
-            else if (persistString == typeof(FormPicture).ToString())
+            else if (persistString == typeof(FormAsmInfo).ToString())
                 return m_formPic;
             else if (persistString == typeof(FormProcessInfo).ToString())
                 return m_formProcess;
@@ -103,6 +124,11 @@ namespace TestCreoView
                 return m_formUserInfo;
             else if (persistString == typeof(DocTotalMdl).ToString())
                 return m_docTotal;
+            else if (persistString == typeof(FormListAuxiMat).ToString())
+                return m_formAuxiMat;
+            else if (persistString == typeof(FormMatInfo).ToString())
+                return m_formMatInfo;
+
             else
             {
                 // DummyDoc overrides GetPersistString to add extra information into persistString.
@@ -127,7 +153,7 @@ namespace TestCreoView
             }
         }
 
-       
+
         private void SetSchema(object sender, System.EventArgs e)
         {
             // Persist settings when rebuilding UI
@@ -222,9 +248,126 @@ namespace TestCreoView
         {
             dockPanel.AllowEndUserDocking = !dockPanel.AllowEndUserDocking;
         }
+
+        #region 弹出下拉菜单
+        private void menuItemViews_Popup(object sender, System.EventArgs e)
+        {
+            mdlTreeToolStripMenuItem.Checked = IsFormActive(m_formTree);
+            gongYiToolStripMenuItem.Checked = IsFormActive(m_formProcess);
+            asmInfoToolStripMenuItem.Checked = IsFormActive(m_formPic);
+            mdlViewToolStripMenuItem.Checked = IsFormActive(m_formView);
+
+            userInfoToolStripMenuItem.Checked = IsFormActive(m_formUserInfo);
+            auxiMatToolStripMenuItem.Checked = IsFormActive(m_formAuxiMat);
+            matInfoToolStripMenuItem.Checked = IsFormActive(m_formMatInfo);
+            toolListToolStripMenuItem.Checked = IsFormActive(m_formList);
+
+        }
+
         private void menuItemTools_Popup(object sender, System.EventArgs e)
         {
             menuItemLockLayout.Checked = !this.dockPanel.AllowEndUserDocking;
         }
+        private bool IsFormActive(ToolWindow form)
+        {
+            if (form == null || form.IsDisposed)
+                return false;
+            return !form.IsHidden;
+        }
+
+        #endregion
+
+        #region 控件布局文件的读写
+        private void MainForm_Load(object sender, System.EventArgs e)
+        {
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.config");
+
+            if (File.Exists(configFile))
+                dockPanel.LoadFromXml(configFile, m_deserializeDockContent);
+        }
+
+        private void MainForm_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            string configFile = Path.Combine(Path.GetDirectoryName(Application.ExecutablePath), "DockPanel.config");
+            if (m_bSaveLayout)
+                dockPanel.SaveAsXml(configFile);
+            else if (File.Exists(configFile))
+                File.Delete(configFile);
+        }
+        #endregion
+
+
+        private void mdlViewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (m_formView.IsDisposed)
+                m_formView = new FormMdlView();
+            m_formView.Show(this.dockPanel);
+        }
+
+        private void totalMdlToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dockPanel.DocumentStyle == DocumentStyle.SystemMdi)
+            {
+                m_docTotal.MdiParent = this;
+                m_docTotal.Show();
+            }
+            else
+                m_docTotal.Show(dockPanel);
+        }
+
+
+
+        #region 相关属性视图显示
+        private void mdlTreeToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (m_formTree.IsDisposed)
+                m_formTree = new FormMdlTree();
+            m_formTree.Show(this.dockPanel);
+        }
+
+        private void pictureToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (m_formPic == null || m_formPic.IsDisposed)
+            {
+                m_formPic = new FormAsmInfo();
+            }
+            m_formPic.Show(this.dockPanel);
+        }
+
+        private void userInfoToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (m_formUserInfo.IsDisposed)
+                m_formUserInfo = new FormUserInfo();
+            m_formUserInfo.Show(this.dockPanel);
+        }
+
+        private void gongYiToolStripMenuItem_Click(object sender, System.EventArgs e)
+        {
+            if (m_formProcess.IsDisposed)
+                m_formProcess = new FormProcessInfo();
+            m_formProcess.Show(this.dockPanel);
+        }
+        private void toolListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (m_formList == null || m_formList.IsDisposed)
+                m_formList = new FormListEquipment();
+            m_formList.Show(this.dockPanel);
+        }
+
+        private void auxiMatToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (m_formAuxiMat == null || m_formAuxiMat.IsDisposed)
+                m_formAuxiMat = new FormListAuxiMat();
+            m_formAuxiMat.Show(this.dockPanel);
+        }
+
+        private void matInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (m_formMatInfo == null || m_formMatInfo.IsDisposed)
+                m_formMatInfo = new FormMatInfo();
+            m_formMatInfo.Show(this.dockPanel);
+        }
+        #endregion
+
     }
 }

@@ -9,7 +9,7 @@ using WeifenLuo.WinFormsUI.Docking;
 
 namespace TestCreoView
 {
-    public partial class FormUserInfo : ToolWindow
+    public partial class FormMatInfo : ToolWindow
     {
         public string toolWindowName
         {
@@ -20,12 +20,12 @@ namespace TestCreoView
             }
             get { return this.TabText; }
         }
-        public FormUserInfo()
+        public FormMatInfo()
         {
             InitializeComponent();
             ResetList();
 
-            toolWindowName = "操作信息";
+            toolWindowName = "物料信息";
         }
 
         public void ResetList()

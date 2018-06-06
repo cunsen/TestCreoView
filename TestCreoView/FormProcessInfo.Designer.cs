@@ -77,7 +77,6 @@
             this.ClientSize = new System.Drawing.Size(457, 221);
             this.Controls.Add(this.panel1);
             this.Name = "ProcessInfoForm";
-            this.Text = "工序工步";
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

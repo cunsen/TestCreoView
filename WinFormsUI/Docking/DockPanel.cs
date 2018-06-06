@@ -867,7 +867,13 @@ namespace WeifenLuo.WinFormsUI.Docking
             get
             {	
                 if (!IsParentFormValid())
+                {
+#if DEBUG           //chencs 增加 null 返回值
                     throw new InvalidOperationException(Strings.DockPanel_ParentForm_Invalid);
+#else
+                    return null;
+#endif
+                }
 
                 return GetMdiClientController().ParentForm;
             }
